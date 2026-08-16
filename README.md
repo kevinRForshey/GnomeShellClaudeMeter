@@ -50,9 +50,12 @@ If your Claude config lives somewhere other than `~/.claude`, set
   at least once, so `~/.claude/.credentials.json` exists
 - libsoup3 (ships with GNOME Shell already)
 
-## Install (local / development)
+## Install
 
 ```sh
+git clone https://github.com/kevinRForshey/GnomeShellClaudeMeter.git
+cd GnomeShellClaudeMeter
+git checkout main   # stable; the default branch (development) is where active work happens
 ./install.sh
 ```
 
