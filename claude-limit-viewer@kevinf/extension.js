@@ -130,6 +130,7 @@ class ClaudeIndicator extends PanelMenu.Button {
         this._session = new Soup.Session({timeout: 10});
         this._cancellable = new Gio.Cancellable();
         this._timeoutId = null;
+        this._hasData = false;
 
         const box = new St.BoxLayout({style_class: 'claude-panel-box'});
         this._icon = new St.Icon({icon_name: 'utilities-terminal-symbolic', style_class: 'system-status-icon'});
@@ -192,6 +193,7 @@ class ClaudeIndicator extends PanelMenu.Button {
         } catch (e) {
             if (this._cancellable.is_cancelled())
                 return;
+            console.error(`[claude-limit-viewer] credentials read failed: ${e}`);
             this._showSignedOut('No Claude Code credentials found — run claude to sign in');
             return;
         }
@@ -215,6 +217,7 @@ class ClaudeIndicator extends PanelMenu.Button {
                 return;
             }
             if (status !== Soup.Status.OK) {
+                console.error(`[claude-limit-viewer] usage request failed: HTTP ${status}`);
                 this._showError(`Usage request failed (HTTP ${status})`);
                 return;
             }
@@ -224,11 +227,13 @@ class ClaudeIndicator extends PanelMenu.Button {
         } catch (e) {
             if (this._cancellable.is_cancelled())
                 return;
+            console.error(`[claude-limit-viewer] usage request failed: ${e}`);
             this._showError('Network error contacting Claude');
         }
     }
 
     _showSignedOut(message) {
+        this._hasData = false;
         this._setPanelText('Sign in', 'claude-sev-critical');
         this._statusItem.label.text = message;
         this._rowsSection.removeAll();
@@ -236,11 +241,13 @@ class ClaudeIndicator extends PanelMenu.Button {
     }
 
     _showError(message) {
-        this._setPanelText('Error', 'claude-sev-warning');
+        if (!this._hasData)
+            this._setPanelText('Error', 'claude-sev-warning');
         this._statusItem.label.text = message;
     }
 
     _showData(data) {
+        this._hasData = true;
         const limits = Array.isArray(data.limits) ? data.limits : [];
 
         const parts = [];
