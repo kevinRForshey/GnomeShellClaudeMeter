@@ -1,0 +1,69 @@
+.claude-panel-box {
+    spacing: 4px;
+}
+
+.claude-panel-label {
+    font-feature-settings: "tnum";
+}
+
+.claude-usage-row {
+    spacing: 4px;
+    padding: 6px 4px;
+}
+
+.claude-row-label {
+    font-weight: bold;
+}
+
+.claude-row-percent {
+    font-weight: bold;
+}
+
+.claude-row-reset {
+    font-size: 0.85em;
+    opacity: 0.7;
+}
+
+.claude-row-active {
+    font-size: 0.85em;
+    font-weight: bold;
+    color: #3fa6f2;
+}
+
+.claude-updated-item {
+    font-size: 0.8em;
+    opacity: 0.6;
+}
+
+.claude-bar-track {
+    border-radius: 4px;
+    background-color: rgba(128, 128, 128, 0.3);
+}
+
+.claude-bar-fill {
+    border-radius: 4px;
+}
+
+.claude-sev-normal {
+    color: #3fc26b;
+}
+
+.claude-sev-warning {
+    color: #e5a83c;
+}
+
+.claude-sev-critical {
+    color: #e5484d;
+}
+
+.claude-bar-fill.claude-sev-normal {
+    background-color: #3fc26b;
+}
+
+.claude-bar-fill.claude-sev-warning {
+    background-color: #e5a83c;
+}
+
+.claude-bar-fill.claude-sev-critical {
+    background-color: #e5484d;
+}

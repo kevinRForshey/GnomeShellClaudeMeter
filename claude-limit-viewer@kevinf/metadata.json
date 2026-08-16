@@ -1,0 +1,8 @@
+{
+    "uuid": "claude-limit-viewer@kevinf",
+    "name": "Claude Limit Viewer",
+    "description": "Shows your Claude Code 5-hour and 7-day usage limits in the top panel, read from the same local OAuth credentials and official usage endpoint Claude Code's own /usage command uses.",
+    "shell-version": ["45", "46", "47", "48", "49", "50"],
+    "url": "",
+    "version-name": "1.0.0"
+}
